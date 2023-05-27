@@ -1,0 +1,60 @@
+﻿@page
+@model LataPrzestepne.Pages.Historia.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>LeapYears</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LeapYears.Id" />
+            <div class="form-group">
+                <label asp-for="LeapYears.Date" class="control-label"></label>
+                <input asp-for="LeapYears.Date" class="form-control" />
+                <span asp-validation-for="LeapYears.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeapYears.UserID" class="control-label"></label>
+                <input asp-for="LeapYears.UserID" class="form-control" />
+                <span asp-validation-for="LeapYears.UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeapYears.UserName" class="control-label"></label>
+                <input asp-for="LeapYears.UserName" class="form-control" />
+                <span asp-validation-for="LeapYears.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeapYears.BirthYear" class="control-label"></label>
+                <input asp-for="LeapYears.BirthYear" class="form-control" />
+                <span asp-validation-for="LeapYears.BirthYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeapYears.FirstName" class="control-label"></label>
+                <input asp-for="LeapYears.FirstName" class="form-control" />
+                <span asp-validation-for="LeapYears.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LeapYears.LeapYear" /> @Html.DisplayNameFor(model => model.LeapYears.LeapYear)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "LeapYears";
+}
+
+<div class="text-center">
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <h1 class="display-4">Welcome @Model.Name</h1><br />
+    <form method="post">
+        <label style="float: left" asp-for="LeapYears.FirstName"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Wprowadź swoje imię" asp-for="LeapYears.FirstName" />
+        <label style="float: left" asp-for="LeapYears.BirthYear"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Podaj swój rok urodzenia" asp-for="LeapYears.BirthYear" />
+        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+        @if (Model.LeapYears != null)
+        {
+            <div class="alert alert-primary" role="alert">@Model.AlertMessage</div>
+        }
+        <span asp-validation-for="LeapYears.FirstName" class="text-danger"></span><br />
+        <span asp-validation-for="LeapYears.BirthYear" class="text-danger"></span>
+    </form>
+</div>
+
+@*@foreach (var modelState in ViewData.ModelState.Values)
+{
+    foreach (var error in modelState.Errors)
+    {
+        <div class="text-danger">@error.ErrorMessage</div>
+    }
+}
+*@

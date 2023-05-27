@@ -1,0 +1,92 @@
+﻿@page
+@model LataPrzestepne.Pages.Historia.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Historia</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYears[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYears[0].UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYears[0].UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYears[0].BirthYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYears[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYears[0].LeapYear)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LeapYears) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.LeapYear)*@
+                    @if (item.LeapYear == true)
+                    {
+                        <p>Przestępny</p>
+                    }
+                    else
+                    {
+                        <p>Nieprzestępny</p>
+                    }
+                </td>
+            <td>
+                @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>*@
+                
+                
+                    @if(item.UserID == Model.CurrentUser)
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.LeapYears.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.LeapYears.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.LeapYears.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.LeapYears.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
